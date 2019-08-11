@@ -1,53 +1,56 @@
-const nodeExternals = require('webpack-node-externals')
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+
 module.exports = {
+  mode: 'universal',
   /*
   ** Headers of the page
   */
   head: {
-    title: 'scrum-vueture',
+    title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Scrum Poker Interface' }
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  plugins: ['~/plugins/vuetify.js'],
-  css: ['~/assets/style/app.styl'],
   /*
-  ** Customize the progress bar color
+  ** Customize the progress-bar color
   */
-  loading: { color: '#3B8070' },
+  loading: { color: '#fff' },
+  /*
+  ** Global CSS
+  */
+  css: [
+  ],
+  /*
+  ** Plugins to load before mounting the App
+  */
+  plugins: [
+  ],
+  /*
+  ** Nuxt.js modules
+  */
+  modules: [
+    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/axios',
+    '@nuxtjs/eslint-module',
+  ],
+  /*
+  ** Axios module configuration
+  ** See https://axios.nuxtjs.org/options
+  */
+  axios: {
+  },
   /*
   ** Build configuration
   */
   build: {
-    transpile: [/^vuetify/],
-    plugins: [
-      new VuetifyLoaderPlugin()
-    ],
-    extractCSS: true,
-    extend (config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-      if (process.server) {
-        config.externals = [
-          nodeExternals({
-            whitelist: [/^vuetify/]
-          })
-        ]
-      }
+    /*
+    ** You can extend webpack config here
+    */
+    extend(config, ctx) {
     }
   }
 }
