@@ -24,7 +24,7 @@ module.exports = {
       }
     ]
   },
-  plugins: ['~/plugins/vuetify'],
+  plugins: ['~/plugins/vuetify', '~/plugins/socket.io'],
   css: ['~/assets/style/app.styl'],
   /*
    ** Customize the progress-bar color
@@ -36,8 +36,12 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '~/io'
   ],
+  env: {
+    WS_URL: process.env.WS_URL || 'http://localhost:3000'
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
