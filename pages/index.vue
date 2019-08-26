@@ -1,6 +1,6 @@
 <template>
   <v-layout column justify-center align-center>
-    <sv-card-collection type="vote" />
+    <sv-card-collection />
   </v-layout>
 </template>
 

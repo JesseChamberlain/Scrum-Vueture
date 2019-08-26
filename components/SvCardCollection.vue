@@ -43,9 +43,6 @@ export default {
       this.voteCardData[target].selected = !this.voteCardData[target].selected;
     }
   },
-  props: {
-    type: String
-  },
   data() {
     return {
       voteCardData: [
