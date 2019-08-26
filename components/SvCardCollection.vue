@@ -5,7 +5,7 @@
         v-for="n in voteCardData"
         :key="n.key"
         :class="n.selected ? 'card-btn selected' : 'card-btn'"
-        :click="toggleSelection(n.key)"
+        @click="toggleSelection(n.key)"
       >
         {{ n.text }}
       </v-btn>
@@ -25,7 +25,7 @@
     font-size: 24px;
   }
   .card-btn.selected {
-    background-color: #333;
+    background-color: #777;
   }
 }
 </style>
