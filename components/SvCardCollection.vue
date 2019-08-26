@@ -5,7 +5,7 @@
         v-for="n in voteCardData"
         :key="n.key"
         :class="n.selected ? 'card-btn selected' : 'card-btn'"
-        v-on:click="toggleSelection(n.key)"
+        :click="toggleSelection(n.key)"
       >
         {{ n.text }}
       </v-btn>
@@ -33,16 +33,6 @@
 <script>
 export default {
   name: 'SvCardCollection',
-  methods: {
-    toggleSelection(target) {
-      this.voteCardData.forEach((card) => {
-        if (card.selected === true && card.key != target) {
-          card.selected = false;
-        }
-      });
-      this.voteCardData[target].selected = !this.voteCardData[target].selected;
-    }
-  },
   data() {
     return {
       voteCardData: [
@@ -84,6 +74,16 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    toggleSelection(target) {
+      this.voteCardData.forEach((card) => {
+        if (card.selected === true && card.key != target) {
+          card.selected = false;
+        }
+      });
+      this.voteCardData[target].selected = !this.voteCardData[target].selected;
+    }
   }
 };
 </script>
