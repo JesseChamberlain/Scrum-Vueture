@@ -40,11 +40,12 @@ export default {
           card.selected = false;
         }
       });
-
       this.voteCardData[target].selected = !this.voteCardData[target].selected;
     }
   },
-  props: {},
+  props: {
+    type: String
+  },
   data() {
     return {
       voteCardData: [
@@ -83,14 +84,6 @@ export default {
           value: 0,
           key: 5,
           selected: false
-        }
-      ],
-      statusCardData: [
-        {
-          vote: '1',
-          value: 1,
-          user: 'Brendan L.',
-          hasVoted: false
         }
       ]
     };
