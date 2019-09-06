@@ -1,6 +1,6 @@
 <template>
   <div class="vote btn-container">
-    <v-col>
+    <div>
       <v-btn
         v-for="n in voteCardData"
         :key="n.key"
@@ -9,7 +9,7 @@
       >
         {{ n.text }}
       </v-btn>
-    </v-col>
+    </div>
   </div>
 </template>
 
