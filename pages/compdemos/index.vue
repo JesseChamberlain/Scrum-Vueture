@@ -25,7 +25,6 @@ export default {
   data() {
     return {
       revealedStatus: false,
-      reset: false,
       voteCardData: [
         {
           text: '1',
