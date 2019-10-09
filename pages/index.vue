@@ -1,11 +1,12 @@
 <template>
-  <v-layout column justify-center align-center>
+  <div>
     <sv-card-collection />
-  </v-layout>
+  </div>
 </template>
 
 <script>
 import SvCardCollection from '../components/SvCardCollection';
+
 export default {
   name: 'App',
   components: {
