@@ -1,6 +1,17 @@
 <template>
   <div class="vote btn-container">
-    <div>
+    <div v-if="revealed">
+      <v-btn
+        v-for="n in voteCardData"
+        :key="n.key"
+        :class="n.selected ? 'card-btn selected' : 'card-btn'"
+        @click="toggleSelection(n.key)"
+        disabled
+      >
+        {{ n.text }}
+      </v-btn>
+    </div>
+    <div v-else>
       <v-btn
         v-for="n in voteCardData"
         :key="n.key"
@@ -26,6 +37,10 @@
   }
   .card-btn.selected {
     background-color: #777;
+
+    &.theme--dark.v-btn.v-btn--disabled:not(.v-btn--icon):not(.v-btn--flat):not(.v-btn--outline) {
+      background-color: #363636 !important;
+    }
   }
 }
 </style>
@@ -35,6 +50,7 @@ export default {
   name: 'SvCardCollection',
   props: {
     reset: Boolean,
+    revealed: Boolean,
     voteCardData: Array
   },
   methods: {
