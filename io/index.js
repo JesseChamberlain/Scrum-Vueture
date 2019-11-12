@@ -1,11 +1,10 @@
 import http from 'http';
 import socketIO from 'socket.io';
 
-console.log(this);
-const server = http.createServer(this.nuxt.renderer.app);
-const io = socketIO(server);
-
 export default function() {
+  const server = http.createServer(this.nuxt.renderer.app);
+  const io = socketIO(server);
+
   // overwrite nuxt.server.listen()
   this.nuxt.server.listen = (port, host) =>
     new Promise((resolve) =>

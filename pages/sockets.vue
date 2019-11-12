@@ -4,63 +4,75 @@
       <li class="chat page">
         <div class="chatArea">
           <ul ref="messages" class="messages">
-            <li v-for="(message, index) in messages" :key="index" class="message">
+            <li
+              v-for="(message, index) in messages"
+              :key="index"
+              class="message"
+            >
               <i :title="message.date">
-                {{ message.date.split('T')[1].slice(0, -2) }}
-              </i>: {{ message.text }}
+                {{ message.date.split('T')[1].slice(0, -2) }} </i
+              >: {{ message.text }}
             </li>
           </ul>
         </div>
-        <input v-model="message" class="inputMessage" type="text" placeholder="Type here..." @keyup.enter="sendMessage">
+        <input
+          v-model="message"
+          class="inputMessage"
+          type="text"
+          placeholder="Type here..."
+          @keyup.enter="sendMessage"
+        />
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import socket from '~/plugins/socket.io.js'
+import socket from '~/plugins/socket.io.js';
 
 export default {
   watch: {
-    'messages': 'scrollToBottom'
+    messages: 'scrollToBottom'
   },
-  asyncData (context, callback) {
-    socket.emit('last-messages', function (messages) {
+  asyncData(context, callback) {
+    socket.emit('last-messages', function(messages) {
       callback(null, {
         messages,
         message: ''
-      })
-    })
+      });
+    });
   },
-  beforeMount () {
+  beforeMount() {
     socket.on('new-message', (message) => {
-      this.messages.push(message)
-    })
+      this.messages.push(message);
+    });
   },
-  mounted () {
-    this.scrollToBottom()
+  mounted() {
+    this.scrollToBottom();
   },
   methods: {
-    sendMessage () {
-      if (!this.message.trim()) { return }
+    sendMessage() {
+      if (!this.message.trim()) {
+        return;
+      }
       const message = {
         date: new Date().toJSON(),
         text: this.message.trim()
-      }
-      this.messages.push(message)
-      this.message = ''
-      socket.emit('send-message', message)
+      };
+      this.messages.push(message);
+      this.message = '';
+      socket.emit('send-message', message);
     },
-    scrollToBottom () {
+    scrollToBottom() {
       this.$nextTick(() => {
-        this.$refs.messages.scrollTop = this.$refs.messages.scrollHeight
-      })
+        this.$refs.messages.scrollTop = this.$refs.messages.scrollHeight;
+      });
     }
   },
   head: {
     title: 'Nuxt.js with Socket.io'
   }
-}
+};
 </script>
 
 <style>
@@ -73,18 +85,14 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-html, input {
-  font-family:
-    "HelveticaNeue-Light",
-    "Helvetica Neue Light",
-    "Helvetica Neue",
-    Helvetica,
-    Arial,
-    "Lucida Grande",
-    sans-serif;
+html,
+input {
+  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
+    Helvetica, Arial, 'Lucida Grande', sans-serif;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -144,7 +152,7 @@ ul {
 /* Input */
 
 .inputMessage {
-  border: 10px solid #3B8070;
+  border: 10px solid #3b8070;
   bottom: 0;
   height: 60px;
   left: 0;
