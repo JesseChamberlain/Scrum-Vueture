@@ -1,7 +1,11 @@
 <template>
   <v-layout column justify-center align-center>
     <sv-card vote="1" user="Brendan L." :revealed="revealedStatus" />
-    <sv-card-collection :reset="reset" :voteCardData="this.voteCardData" />
+    <sv-card-collection
+      :reset="reset"
+      :voteCardData="this.voteCardData"
+      :revealed="revealedStatus"
+    />
 
     <sv-reveal-reset
       @reveal-cards="toggleRevealedStatus()"
